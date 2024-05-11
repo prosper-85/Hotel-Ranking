@@ -8,7 +8,7 @@ import {
   faTaxi,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './header.css';
+import './header.scss';
 import { DateRange } from 'react-date-range';
 import { useState } from 'react';
 import 'react-date-range/dist/styles.css';
@@ -16,6 +16,7 @@ import 'react-date-range/dist/theme/default.css';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Grid } from '@mui/material';
 
 const Header = ({ type }) => {
   const hotel = useSelector((state) => state.hotel);
@@ -58,14 +59,6 @@ const Header = ({ type }) => {
           <div className='headerListItem'>
             <FontAwesomeIcon icon={faCar} />
             <span>Car rentals</span>
-          </div>
-          <div className='headerListItem'>
-            <FontAwesomeIcon icon={faTaxi} />
-            <span>Airport taxis</span>
-          </div>
-          <div className='headerListItem'>
-            <FontAwesomeIcon icon={faJetFighter} />
-            <span>Attractions</span>
           </div>
         </div>
         {type !== 'list' && (

@@ -2,8 +2,10 @@ import { useState } from 'react';
 import './login.scss';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '@/redux/userSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { fetchCountries } from '@/redux/countrySlice';
+import { Button, Grid, TextField } from '@mui/material';
+import { toast } from 'react-toastify';
 
 function Login() {
   const dispatch = useDispatch();
@@ -29,46 +31,43 @@ function Login() {
     setTimeout(() => {
       dispatch(loginUser(formData));
       dispatch(fetchCountries());
+      toast.success(`Login successfully`);
       setIsLoading(false);
-      navigate('/');
+      navigate('/create-hotel');
     }, 1000);
   };
 
   return (
-    <div className='login'>
-      <div className='formContainer'>
-        <form onSubmit={handleSubmit}>
-          <h1>Welcome</h1>
-          <input
-            name='username'
-            value={formData.username}
-            onChange={handleChange}
-            required
-            minLength={3}
-            maxLength={20}
-            type='text'
-            placeholder='Username'
-          />
-          <input
-            name='password'
-            value={formData.password}
-            onChange={handleChange}
-            type='password'
-            required
-            placeholder='Password'
-          />
-          <button type='submit' disabled={isLoading}>
-            {isLoading ? 'Logging in...' : 'Login'}
-          </button>
-        </form>
-        <p>
-          Don't have an account? <Link to='/register'>Register</Link>
-        </p>
-      </div>
-      <div className='imgContainer'>
-        <img src='/bg.png' alt='' />
-      </div>
-    </div>
+    <Grid className='login'>
+      <form onSubmit={handleSubmit}>
+        <h1>Welcome</h1>
+        <TextField
+          name='username'
+          value={formData.username}
+          onChange={handleChange}
+          required
+          minLength={3}
+          maxLength={20}
+          type='text'
+          label='Username'
+        />
+        <TextField
+          name='password'
+          value={formData.password}
+          onChange={handleChange}
+          type='password'
+          required
+          label='Password'
+        />
+        <Button
+          variant='contained'
+          fullWidth
+          type='submit'
+          disabled={isLoading}>
+          {isLoading ? 'Logging in...' : 'Login'}
+        </Button>
+      </form>
+    </Grid>
   );
 }
 

@@ -9,20 +9,5 @@
         flex-direction: column;
         gap: 20px;
 
-        button {
-            padding: 20px;
-            border-radius: 5px;
-            border: none;
-            background-color: teal;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-
-            &:disabled {
-                background-color: #BED9D8;
-                cursor: not-allowed;
-            }
-        }
-
     }
 }

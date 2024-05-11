@@ -1,17 +1,5 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
-import Home from './pages/home/Home';
-import Hotel from './pages/hotel/Hotel';
-import List from './pages/list/List';
-import AddHotel from './pages/addhotel/HotelForm';
-import Layout from './pages/layout/Layout';
-import Login from './pages/login/login';
-import EditHotel from './pages/edithotel/EditHotel';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { AddHotel, EditHotel, Home, Hotel, Layout, List, Login } from '@/pages';
 
 const router = createBrowserRouter([
   {
@@ -47,16 +35,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return (
-    <RouterProvider router={router} />
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path='/' element={<Home />} />
-    //     <Route path='/hotels' element={<List />} />
-    //     <Route path='/hotels/:id' element={<Hotel />} />
-    //   </Routes>
-    // </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

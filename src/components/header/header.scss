@@ -33,7 +33,8 @@
   padding: 10px;
   border-radius: 20px;
 }
-.headerTitle{
+
+.headerTitle {
   font-weight: 700;
   font-size: 45px;
 }
@@ -80,7 +81,7 @@
   background-color: white;
   color: #1b1b1b;
   height: 47px;
-  
+
   width: 300px;
   margin-right: 5px;
   padding: 0px 10px;
@@ -91,9 +92,10 @@
   border: none;
   outline: none;
   background-color: transparent;
-  
+
 }
-.headerSearchInput::placeholder{
+
+.headerSearchInput::placeholder {
   font-weight: 700;
   font-size: 15px;
   color: #80808083;

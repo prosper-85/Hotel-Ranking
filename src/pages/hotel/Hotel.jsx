@@ -1,5 +1,4 @@
-import './hotel.css';
-import Header from '../../components/header/Header';
+import './hotel.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCircleArrowLeft,
@@ -14,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { deleteHotel, hotelById } from '@/redux/hotelSlice';
 import { toast } from 'react-toastify';
+import { Header } from '@/components';
+import { Button, Grid } from '@mui/material';
 
 const Hotel = () => {
   const { id } = useParams();
@@ -73,7 +74,7 @@ const Hotel = () => {
   }
 
   return (
-    <div>
+    <Grid>
       <Header type='list' />
       <div className='hotelContainer'>
         {open && (
@@ -118,7 +119,7 @@ const Hotel = () => {
           <h1 className='hotelTitle'>Tower Street Apartments</h1>
           <div className='hotelAddress'>
             <FontAwesomeIcon icon={faLocationDot} />
-            {/* <span>{hotel?.country}</span> */}
+            <span>{hotel?.country}</span>
           </div>
           <span className='hotelDistance'>
             Excellent location – 500m from center
@@ -146,19 +147,16 @@ const Hotel = () => {
             </div>
             <div className='hotelDetailsPrice'>
               <h1>Perfect for a 9-night stay!</h1>
-              {/* <span>
+              <span>
                 {`Located in the ${hotel?.country}, this property has an
                 excellent location score of 9.8!`}
-              </span> */}
-              <h2>
-                <b>$945</b> (9 nights)
-              </h2>
-              <button>Reserve or Book Now!</button>
+              </span>
+              <Button variant='contained'>Reserve or Book Now!</Button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Grid>
   );
 };
 

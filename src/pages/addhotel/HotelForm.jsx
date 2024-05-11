@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import {
   TextField,
   Button,
@@ -7,27 +7,22 @@ import {
   Select,
   MenuItem,
   Grid,
-  Typography,
 } from '@mui/material';
 import './hotelform.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { addHotel } from '@/redux/hotelSlice';
-import axios from 'axios';
 import { toast } from 'react-toastify';
-import { selectCountries } from '@/redux/countrySlice';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const HotelForm = () => {
-  const user = useSelector((state) => state.user);
-  console.log(user);
+  // const countries = useSelector((state) => state.country);
+  const user = useSelector((state) => state.user.user);
 
-  const navigate = useNavigate();
-  const countries = useSelector((state) => state.country);
-
-  if (!user) {
-    toast.warn('You must be logged in to add hotels');
-    navigate('/login');
-  }
+  const [isLoading, setIsLoading] = useState(false);
+  // if (!user) {
+  //   toast.warn('You must be logged in to add hotel');
+  //   return <Navigate to='/login' />;
+  // }
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     id: Date.now(),
@@ -45,6 +40,13 @@ const HotelForm = () => {
     });
   };
 
+  const countries = [
+    { id: 1, country: 'Nigeria' },
+    { id: 2, country: 'Ghana' },
+    { id: 3, country: 'Kenya' },
+    { id: 4, country: 'UK' },
+    { id: 5, country: 'US' },
+  ];
   const categories = [
     { id: 1, ratting: '1 Star Ratting' },
     { id: 2, ratting: '2 Star Ratting' },
@@ -55,24 +57,24 @@ const HotelForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(editHotel(formData));
-    toast.success(`Hotel edited successfully`);
-    setFormData({
-      name: '',
-      country: '',
-      address: '',
-    });
+    setIsLoading(true);
+    setTimeout(() => {
+      dispatch(addHotel(formData));
+      toast.success(`Hotel edited successfully`);
+      setIsLoading(false);
+      setFormData({
+        name: '',
+        country: '',
+        category: '',
+        address: '',
+      });
+    }, 1000);
   };
-
-  if (!user) {
-    toast.warn('You must be logged in to add hotels');
-    navigate('/login');
-  }
 
   return (
     <Grid className='addHotel'>
       <form onSubmit={handleSubmit}>
-        <Typography>Add Hotel</Typography>
+        <h1>Add Hotel</h1>
         <TextField
           label='Hotel Name'
           name='name'
@@ -86,10 +88,11 @@ const HotelForm = () => {
             name='country'
             value={formData.country}
             required
+            fullWidth
             onChange={handleChange}>
             {countries.map((country, i) => (
-              <MenuItem key={i} value={country}>
-                {country}
+              <MenuItem key={i} value={country.country}>
+                {country.country}
               </MenuItem>
             ))}
           </Select>
@@ -100,6 +103,7 @@ const HotelForm = () => {
             name='category'
             value={formData.category}
             required
+            fullWidth
             onChange={handleChange}>
             {categories.map((category, i) => (
               <MenuItem key={i} value={category.ratting}>
@@ -115,7 +119,13 @@ const HotelForm = () => {
           required
           onChange={handleChange}
         />
-        <Button type='submit'>Add Hotel</Button>
+        <Button
+          variant='contained'
+          fullWidth
+          type='Add hotel'
+          disabled={isLoading}>
+          {isLoading ? 'Logging in...' : 'Login'}
+        </Button>
       </form>
     </Grid>
   );

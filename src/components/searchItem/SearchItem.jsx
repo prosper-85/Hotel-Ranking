@@ -1,5 +1,4 @@
-import { Button } from '@mui/material';
-import './searchItem.css';
+import './searchItem.scss';
 import { Link } from 'react-router-dom';
 
 const SearchItem = ({ item }) => {
@@ -8,10 +7,9 @@ const SearchItem = ({ item }) => {
       <img
         src='https://cf.bstatic.com/xdata/images/hotel/square600/261707778.webp?k=fa6b6128468ec15e81f7d076b6f2473fa3a80c255582f155cae35f9edbffdd78&o=&s=1'
         alt=''
-        className='siImg'
       />
       <div className='siDesc'>
-        <h1 className='siTitle'>Tower Street Apartments</h1>
+        <h1>Tower Street Apartments</h1>
         <span className='siDistance'>500m from center</span>
         <span className='siDistance'>{item?.country}</span>
         <span className='siSubtitle'>
@@ -27,7 +25,7 @@ const SearchItem = ({ item }) => {
           <button>{item?.category}</button>
         </div>
         <div className='siDetailTexts'>
-          <span className='siPrice'>$112</span>
+          <span>$112</span>
           <Link to={`/hotels/${item?.id}`}>
             <button className='siCheckButton'>See availability</button>
           </Link>

@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   TextField,
-  Button,
   FormControl,
   InputLabel,
   Select,
   MenuItem,
   Grid,
   Typography,
+  Button,
 } from '@mui/material';
 import './edithotel.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { editHotel } from '@/redux/hotelSlice';
-import { fetchCountries } from '@/utils/CountryApi';
-import axios from 'axios';
-import { data } from '@/utils/dummy';
 import { toast } from 'react-toastify';
 
 const EditHotel = () => {
@@ -28,22 +25,6 @@ const EditHotel = () => {
     address: '',
   });
   const [countries, setCountries] = useState([]);
-
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        // const response = await axios(
-        //   'https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json'
-        // );
-        // const data = await response.data;
-        const countryList = data.map((country) => country.country);
-        setCountries(countryList);
-      } catch (error) {
-        toast.error(error || 'Error fetching countries');
-      }
-    };
-    fetchCountries();
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -118,7 +99,9 @@ const EditHotel = () => {
           required
           onChange={handleChange}
         />
-        <button type='submit'>Edit Hotel</button>
+        <Button variant='contained' type='submit'>
+          Edit Hotel
+        </Button>
       </form>
     </Grid>
   );

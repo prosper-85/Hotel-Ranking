@@ -1,11 +1,11 @@
-import './list.css';
-import Header from '../../components/header/Header';
+import './list.scss';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
-import SearchItem from '../../components/searchItem/SearchItem';
 import { useSelector } from 'react-redux';
+import { Header, SearchItem } from '@/components';
+import { Button, Grid } from '@mui/material';
 
 const List = () => {
   const location = useLocation();
@@ -16,7 +16,7 @@ const List = () => {
 
   const hotels = useSelector((state) => state.hotel);
   return (
-    <div>
+    <Grid>
       <Header type='list' />
       <div className='listContainer'>
         <div className='listWrapper'>
@@ -44,7 +44,7 @@ const List = () => {
                 />
               )}
             </div>
-            <button>Search</button>
+            <Button variant='contained'>Search</Button>
           </div>
           <div className='listResult'>
             {hotels.map((item, i) => (
@@ -53,7 +53,7 @@ const List = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Grid>
   );
 };
 

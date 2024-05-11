@@ -1,18 +1,17 @@
-import Featured from '../../components/featured/Featured';
-import Header from '../../components/header/Header';
-import PropertyList from '../../components/propertyList/PropertyList';
-import './home.css';
+import { Featured, Header, HotelList } from '@/components';
+import './home.scss';
+import { Grid } from '@mui/material';
 
 const Home = () => {
   return (
-    <div>
+    <Grid>
       <Header />
       <div className='homeContainer'>
         <Featured />
         <h1 className='homeTitle'>Browse by Category type</h1>
-        <PropertyList />
+        <HotelList />
       </div>
-    </div>
+    </Grid>
   );
 };
 
