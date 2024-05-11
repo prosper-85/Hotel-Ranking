@@ -1,0 +1,13 @@
+.listItem {
+    display: flex;
+    padding: 5px 5px;
+    text-transform: capitalize;
+    text-decoration: none;
+    color: white;
+}
+
+.listItem.active {
+    background: #272727;
+    color: gray;
+    border-radius: 5px;
+}

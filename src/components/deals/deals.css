@@ -1,0 +1,39 @@
+.container{
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 9px;
+  padding: 2rem;
+  justify-content: center;
+}
+
+.title{
+ font-weight: 600;
+ font-size: 17px;
+}
+.img{
+  height: 8.5rem;
+  width: 8.5rem;
+  margin-left: 15px;
+}
+.desc{
+ font-size: 15px;
+}
+
+.btn{
+  border: none;
+  background-color: #005ee2;
+  color: white;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 2px;
+}
