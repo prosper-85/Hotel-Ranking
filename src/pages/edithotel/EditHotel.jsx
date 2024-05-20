@@ -15,6 +15,7 @@ import { editHotel } from '@/redux/hotelSlice';
 import { toast } from 'react-toastify';
 
 const EditHotel = () => {
+  const countries = useSelector((state) => state.country);
   const hotels = useSelector((state) => state.hotel);
   console.log(hotels);
   const dispatch = useDispatch();
@@ -24,7 +25,6 @@ const EditHotel = () => {
     category: '',
     address: '',
   });
-  const [countries, setCountries] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

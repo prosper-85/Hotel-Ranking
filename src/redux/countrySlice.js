@@ -17,7 +17,10 @@ const countrySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCountries.fulfilled, (state, action) => {
-      return action.payload;
+      const list = action?.payload?.map((item) => item);
+      const removeRepeatedList = new Set(list);
+      const convertBackToArray = Array.from(removeRepeatedList);
+      return convertBackToArray;
     });
   },
 });

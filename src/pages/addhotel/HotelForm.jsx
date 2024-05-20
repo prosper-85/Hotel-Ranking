@@ -15,9 +15,9 @@ import { toast } from 'react-toastify';
 import { Navigate } from 'react-router-dom';
 
 const HotelForm = () => {
-  // const countries = useSelector((state) => state.country);
+  const countries = useSelector((state) => state.country);
   const user = useSelector((state) => state.user.user);
-
+  console.log(countries);
   const [isLoading, setIsLoading] = useState(false);
   // if (!user) {
   //   toast.warn('You must be logged in to add hotel');
@@ -40,13 +40,6 @@ const HotelForm = () => {
     });
   };
 
-  const countries = [
-    { id: 1, country: 'Nigeria' },
-    { id: 2, country: 'Ghana' },
-    { id: 3, country: 'Kenya' },
-    { id: 4, country: 'UK' },
-    { id: 5, country: 'US' },
-  ];
   const categories = [
     { id: 1, ratting: '1 Star Ratting' },
     { id: 2, ratting: '2 Star Ratting' },
@@ -91,8 +84,8 @@ const HotelForm = () => {
             fullWidth
             onChange={handleChange}>
             {countries.map((country, i) => (
-              <MenuItem key={i} value={country.country}>
-                {country.country}
+              <MenuItem key={i} value={country}>
+                {country}
               </MenuItem>
             ))}
           </Select>
@@ -122,9 +115,9 @@ const HotelForm = () => {
         <Button
           variant='contained'
           fullWidth
-          type='Add hotel'
+          type='submit'
           disabled={isLoading}>
-          {isLoading ? 'Logging in...' : 'Login'}
+          {isLoading ? 'Adding...' : 'Add Hotel'}
         </Button>
       </form>
     </Grid>
